@@ -3,7 +3,7 @@
 
   "name": "JenkinsQALinkFinder",
   "description": "Finds failing links in a junit jenkins build",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "content_scripts": [{
       "matches": ["*://*/*consoleFull"],
       "js":      ["jquery.js","content.js"]
