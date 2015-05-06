@@ -9,9 +9,12 @@ jQuery(document).ready(function() {
                 if(lines[k - search_offset].indexOf("Executing: GET") > 0) {
                     return {'test': test_name, 'url': lines[k-search_offset].split('GET')[1]};
                 }
+                if(lines[k - search_offset].indexOf("BEGIN TESTING " + test_name) > 0) {
+                    return {'test': test_name, 'url': lines[k-search_offset + 2].split('Request path')[1]};
+                }
                 search_offset++;
                 if (search_offset > 100) {
-                    console.log("couldn't find url for " + test_names[idx])
+                    console.log("couldn't find url for " + test_name)
                     return "";
                 }
             }
@@ -23,6 +26,7 @@ jQuery(document).ready(function() {
         links.forEach(function(v) {
            console.log(v.test + ": " + v.url);
         });
+        console.log("Num errors: " + links.length);
     } else {
         console.log("%cREGRESSION SUCCESS, NO FAILURES.", 'font-size:15px;color:#0a0');
     }
